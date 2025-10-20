@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cursos</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<h1>Gerenciamento de Cursos</h1>
+<a th:href="@{/courses/new}">Novo Curso</a>
+<table border="1" cellpadding="8">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Categoria Principal</th>
+        <th>Instrutor Responsável</th>
+        <th>Status</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c : ${courses}">
+        <td th:text="${c.id}">1</td>
+        <td th:text="${c.nome}">Curso</td>
+        <td th:text="${c.mainCategory != null ? c.mainCategory.nome : '—'}">Categoria</td>
+        <td th:text="${c.responsibleInstructor != null ? c.responsibleInstructor.nome : '—'}">Instrutor</td>
+        <td th:text="${c.status}">ativo</td>
+        <td>
+            <a th:href="@{'/courses/' + ${c.id} + '/edit'}">Editar</a>
+            <form th:action="@{'/courses/' + ${c.id} + '/delete'}" method="post" style="display:inline">
+                <button type="submit">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
