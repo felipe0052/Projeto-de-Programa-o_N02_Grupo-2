@@ -1,4 +1,4 @@
--- Schema MySQL 8 para plataforma de cursos
+
 DROP DATABASE IF EXISTS plataforma_cursos;
 CREATE DATABASE plataforma_cursos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE plataforma_cursos;
@@ -6,7 +6,7 @@ USE plataforma_cursos;
 SET NAMES utf8mb4;
 SET time_zone = '+00:00';
 
--- Usuarios
+
 CREATE TABLE users (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(120) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE users (
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- Cargos (roles)
+
 CREATE TABLE roles (
   id SMALLINT AUTO_INCREMENT PRIMARY KEY,
   code VARCHAR(20) NOT NULL UNIQUE
@@ -33,14 +33,13 @@ CREATE TABLE user_roles (
   CONSTRAINT fk_user_roles_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Categorias
 CREATE TABLE categories (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(80) NOT NULL UNIQUE,
   descricao TEXT
 ) ENGINE=InnoDB;
 
--- Cursos
+
 CREATE TABLE courses (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(160) NOT NULL,
@@ -60,7 +59,7 @@ CREATE TABLE courses (
 CREATE INDEX idx_courses_category ON courses(category_id);
 CREATE INDEX idx_courses_instructor ON courses(instructor_id);
 
--- Pre-requisitos de cursos
+
 CREATE TABLE course_prerequisites (
   course_id BIGINT NOT NULL,
   prerequisite_course_id BIGINT NOT NULL,
@@ -70,7 +69,7 @@ CREATE TABLE course_prerequisites (
   CONSTRAINT chk_cp_distinct CHECK (course_id <> prerequisite_course_id)
 ) ENGINE=InnoDB;
 
--- Matriculas (por aluno)
+
 CREATE TABLE enrollments (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
   user_id BIGINT NOT NULL,
@@ -87,7 +86,7 @@ CREATE TABLE enrollments (
 CREATE INDEX idx_enrollments_course ON enrollments(course_id, status);
 CREATE INDEX idx_enrollments_user ON enrollments(user_id, status);
 
--- Regras de negocio em triggers
+
 DELIMITER $$
 
 CREATE TRIGGER trg_enrollments_before_insert
@@ -97,12 +96,12 @@ BEGIN
   DECLARE limite INT DEFAULT NULL;
   DECLARE faltando INT DEFAULT 0;
 
-  -- codigo de matricula automatico
+
   IF NEW.registration_code IS NULL OR NEW.registration_code = '' THEN
     SET NEW.registration_code = CONCAT('MAT-', UUID());
   END IF;
 
-  -- checagem de capacidade (conta apenas ativos)
+
   SELECT COUNT(e.id) INTO inscritos
     FROM enrollments e
     WHERE e.course_id = NEW.course_id AND e.status = 'ativo';
@@ -117,7 +116,7 @@ BEGIN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Curso sem vagas';
   END IF;
 
-  -- checagem de pre-requisitos: precisa ter concluido todos
+
   SELECT COUNT(*) INTO faltando
   FROM course_prerequisites cp
   LEFT JOIN enrollments e
@@ -132,7 +131,7 @@ BEGIN
   END IF;
 END$$
 
--- Instrutor do curso precisa ter cargo INSTRUTOR
+
 CREATE TRIGGER trg_courses_before_insert
 BEFORE INSERT ON courses FOR EACH ROW
 BEGIN
@@ -163,7 +162,7 @@ END$$
 
 DELIMITER ;
 
--- Visao de disponibilidade: vagas = limite - inscritos ativos
+
 CREATE OR REPLACE VIEW vw_curso_vagas AS
 SELECT c.id AS course_id, c.nome, c.limite_alunos,
        COUNT(e.id) AS inscritos_ativos,
@@ -172,7 +171,3 @@ FROM courses c
 LEFT JOIN enrollments e ON e.course_id = c.id AND e.status = 'ativo'
 GROUP BY c.id, c.nome, c.limite_alunos;
 
--- Seeds opcionais
--- INSERT INTO users (nome,email,is_admin,foto_url) VALUES ('Ana Instrutora','ana@exemplo.com',0,'https://exemplo.com/ana.jpg'), ('Bruno Aluno','bruno@exemplo.com',0,'https://exemplo.com/bruno.jpg');
--- INSERT INTO user_roles (user_id, role_id) SELECT u.id, r.id FROM users u JOIN roles r ON r.code='INSTRUTOR' WHERE u.email='ana@exemplo.com';
--- INSERT INTO categories (nome) VALUES ('Programação'),('Data Science');
