@@ -1,0 +1,21 @@
+Principal: ().
+
+Documentar o projeto do grupo 2
+Fazer vídeo (provavelmente do projeto funcionando)
+
+Criar Interface com o NEXT/** ou REACT
+
+Criar /docs -> documentação parcial
+
+Escrever:
+
+README.md → arquivo explicativo com:
+● Objetivo do módulo desenvolvido
+● Bibliotecas utilizadas
+● Instruções de execução
+● Responsabilidades de cada integrante
+● Prints ou exemplos de saída
+
+
+Criar:
+/demo --> pro vídeo max 5 min o básico do sistema
