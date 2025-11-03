@@ -49,7 +49,6 @@ public class Course {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    // prerequisites relationship (self-referencing many-to-many)
     @ManyToMany
     @JoinTable(
             name = "course_prerequisites",
@@ -59,4 +58,3 @@ public class Course {
     @Builder.Default
     private Set<Course> prerequisites = new HashSet<>();
 }
-

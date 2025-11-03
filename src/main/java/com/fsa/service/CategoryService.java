@@ -50,7 +50,7 @@ public class CategoryService {
     @Transactional
     public void delete(Integer id) {
         if (!categoryRepository.existsById(id)) {
-            return; // idempotente
+            return;
         }
         if (courseRepository.existsByCategory_Id(id)) {
             throw new IllegalStateException("Não pode deletar categoria com cursos vinculados");

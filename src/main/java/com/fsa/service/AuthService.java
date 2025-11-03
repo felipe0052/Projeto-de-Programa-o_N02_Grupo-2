@@ -22,7 +22,6 @@ public class AuthService {
 
     @Transactional(readOnly = true)
     public LoginResponse login(LoginRequest req) {
-        // Atenção: schema não possui senha; validação de senha está fora do escopo.
         User user = userRepository.findByEmail(req.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
         String token = jwtService.generateToken(user);

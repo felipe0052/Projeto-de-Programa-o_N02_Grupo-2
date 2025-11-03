@@ -41,4 +41,3 @@ public class RestExceptionHandler {
         return ResponseEntity.status(status).body(body);
     }
 }
-

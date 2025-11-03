@@ -12,6 +12,6 @@ public class Role {
     private Short id;
 
     @Column(name = "code", nullable = false, unique = true, length = 20)
-    private String code; // e.g., INSTRUTOR, ALUNO
+    private String code;
 }
 

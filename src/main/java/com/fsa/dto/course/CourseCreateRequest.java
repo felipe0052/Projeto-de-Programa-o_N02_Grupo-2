@@ -19,7 +19,7 @@ public class CourseCreateRequest {
     @NotNull
     private Integer categoryId;
     private Long instructorId;
-    private String status; // rascunho|ativo|encerrado (opcional)
+    private String status;
     private List<Long> prerequisiteIds;
 }
 

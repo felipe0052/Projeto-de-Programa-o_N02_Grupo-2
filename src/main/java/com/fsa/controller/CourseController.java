@@ -78,17 +78,14 @@ public class CourseController {
         return ResponseEntity.noContent().build();
     }
 
-    // POST /cursos/{id}/inscricoes  (inscrever id)
     @PostMapping("/{id}/inscricoes")
     public ResponseEntity<EnrollmentResponse> enroll(@PathVariable Long id, @RequestBody @Valid EnrollmentRequest req) {
         return ResponseEntity.ok(enrollmentService.enroll(id, req));
     }
 
-    // DELETE /cursos/{id}/inscricoes  (desinscrever all)
     @DeleteMapping("/{id}/inscricoes")
     public ResponseEntity<Void> cancelAll(@PathVariable Long id) {
         enrollmentService.cancelAllByCourse(id);
         return ResponseEntity.noContent().build();
     }
 }
-

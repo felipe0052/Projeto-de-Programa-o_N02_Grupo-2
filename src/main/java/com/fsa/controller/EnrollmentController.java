@@ -12,11 +12,9 @@ public class EnrollmentController {
     private final EnrollmentService enrollmentService;
     public EnrollmentController(EnrollmentService enrollmentService) { this.enrollmentService = enrollmentService; }
 
-    // DELETE /inscricoes/{id} (desinscrever id)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> cancel(@PathVariable Long id) {
         enrollmentService.cancel(id);
         return ResponseEntity.noContent().build();
     }
 }
-

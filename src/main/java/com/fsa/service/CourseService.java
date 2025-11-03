@@ -97,7 +97,6 @@ public class CourseService {
                 .updatedAt(LocalDateTime.now())
                 .build();
 
-        // prerequisitos
         if (req.getPrerequisiteIds() != null && !req.getPrerequisiteIds().isEmpty()) {
             List<Course> prereqs = courseRepository.findAllById(req.getPrerequisiteIds());
             c.setPrerequisites(Set.copyOf(prereqs));
@@ -125,7 +124,6 @@ public class CourseService {
         for (Course c : base) {
             if (categoryId != null && (c.getCategory() == null || !categoryId.equals(c.getCategory().getId()))) continue;
             if (instrutorId != null && (c.getInstructor() == null || !instrutorId.equals(c.getInstructor().getId()))) continue;
-            // RN07: por padrão, não listar inativos
             if (c.getStatus() != CourseStatus.ATIVO) continue;
             CourseResponse resp = toResponse(c);
             if (Boolean.TRUE.equals(disponibilidade) && resp.getVagasDisponiveis() <= 0) continue;
@@ -229,4 +227,3 @@ public class CourseService {
         courseRepository.delete(c);
     }
 }
-
