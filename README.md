@@ -1,6 +1,6 @@
-# :jigsaw: Gerenciador de Cursos
+#  Gerenciador de Cursos
 
-## :blue_book: Descrição do Módulo
+## Descrição do Módulo
 API desenvolvida com **Spring Boot** para gerenciar cursos, categorias, usuários e matrículas.  
 Inclui autenticação com **JWT**, documentação automática com **Swagger/OpenAPI**, e integração com um banco de dados **MySQL** executado via **Docker**.
 
@@ -8,9 +8,9 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 
 ---
 
-## :gear: Tecnologias e Bibliotecas Utilizadas
+## Tecnologias e Bibliotecas Utilizadas
 
-### :desktop: Back-end (Java / Spring Boot)
+### Back-end (Java / Spring Boot)
 - **Spring Boot 3.3.4**
 - **Spring Web** — Criação de endpoints RESTful  
 - **Spring Data JPA** — Persistência e acesso a dados  
@@ -22,7 +22,7 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 - **Springdoc OpenAPI** — Documentação Swagger em `/swagger-ui.html`  
 - **Maven** — Gerenciamento de dependências e build
 
-### :computer: Front-end (React / Vite)
+### Front-end (React / Vite)
 - **React.js**
 - **Vite** — Build rápido e leve  
 - **ESLint** — Padronização de código  
