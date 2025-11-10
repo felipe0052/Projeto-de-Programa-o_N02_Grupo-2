@@ -23,20 +23,38 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 - **Maven** — Gerenciamento de dependências e build
 
 ### Front-end (React / Vite)
-- **React.js**
-- **Vite** — Build rápido e leve  
-- **ESLint** — Padronização de código  
-- **Axios** (opcional) — Comunicação com a API  
-- **Node.js / npm** — Execução do ambiente
+- **Next.js 14+** — Framework React para renderização híbrida
+- **React 18+** — Biblioteca base de componentes  
+- **Axios ou Fetch API** — Comunicação com a API Spring Boot  
+- **Node.js / npm** — Ambiente de execução e gerenciamento de pacotes 
 
 ---
 
-##  Execução do Projeto
-- **npm install**
+##  Passo a Passo para Executar o Projeto
 
-- **npm build** 
+# 1. Executar o Banco de Dados 
+docker run --name mysql-fsa \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -e MYSQL_DATABASE=fsa_db \
+  -p 3306:3306 \
+  -d mysql:8
 
-- **npm start** 
+# 2. Executar o Back-end 
+# (Certifique-se de estar na pasta do projeto Java)
+mvn spring-boot:run
+# ou, se preferir, execute diretamente pela IDE:
+# FsaApplication.java
+
+# 3. Executar o Front-end 
+# (Entre na pasta do projeto front-end)
+npm install
+npm run build
+npm start
+
+# Endpoints
+# API: http://localhost:8080
+# Front-end: http://localhost:3000
+# Swagger: http://localhost:8080/swagger-ui.html
 
 
 
