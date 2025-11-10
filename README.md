@@ -24,7 +24,6 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 
 #### Front-end (React / Vite)
 - **Next.js 14+** — Framework React para renderização híbrida
-- **React 18+** — Biblioteca base de componentes  
 - **Axios ou Fetch API** — Comunicação com a API Spring Boot  
 - **Node.js / npm** — Ambiente de execução e gerenciamento de pacotes 
 
@@ -32,20 +31,20 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 
 ##  Passo a Passo para Executar o Projeto
 
-#### 1. Executar o Banco de Dados (MySQL via Docker)
+#### 1. Executar o Banco de Dados 
 docker run --name mysql-fsa \
   -e MYSQL_ROOT_PASSWORD=root \
   -e MYSQL_DATABASE=fsa_db \
   -p 3306:3306 \
   -d mysql:8
 
-#### 2. Executar o Back-end (Spring Boot)
+#### 2. Executar o Back-end 
 #### Certifique-se de estar na pasta do projeto Java
 mvn spring-boot:run
 #### ou, se preferir, execute diretamente pela IDE:
 #### FsaApplication.java
 
-#### 3. Executar o Front-end (Next.js)
+#### 3. Executar o Front-end 
 #### Entre na pasta do projeto front-end
 npm install
 npm run build
