@@ -32,8 +32,8 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 ##  Passo a Passo para Executar o Projeto
 
 #### 1. Executar o Banco de Dados 
-mysql -u root -p
-CREATE DATABASE fsa_db;
+./setup-mysql.sh
+
 
 
 #### 2. Executar o Back-end 
