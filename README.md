@@ -4,7 +4,7 @@
 API desenvolvida com **Spring Boot** para gerenciar cursos, categorias, usuários e matrículas.  
 Inclui autenticação com **JWT**, documentação automática com **Swagger/OpenAPI**, e integração com um banco de dados **MySQL** executado via **Docker**.
 
-O módulo faz parte de um sistema de gestão educacional, integrando o **back-end (Spring Boot)** com o **front-end (React + Vite)**.
+O módulo faz parte de um sistema de gestão educacional, integrando o **back-end (Spring Boot)** com o **front-end (Next js)**.
 
 ---
 
