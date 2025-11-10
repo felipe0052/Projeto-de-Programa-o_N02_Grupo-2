@@ -32,21 +32,21 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 
 ##  Passo a Passo para Executar o Projeto
 
-### 1. Executar o Banco de Dados (MySQL via Docker)
+#### 1. Executar o Banco de Dados (MySQL via Docker)
 docker run --name mysql-fsa \
   -e MYSQL_ROOT_PASSWORD=root \
   -e MYSQL_DATABASE=fsa_db \
   -p 3306:3306 \
   -d mysql:8
 
-### 2. Executar o Back-end (Spring Boot)
-### Certifique-se de estar na pasta do projeto Java
+#### 2. Executar o Back-end (Spring Boot)
+#### Certifique-se de estar na pasta do projeto Java
 mvn spring-boot:run
-### ou, se preferir, execute diretamente pela IDE:
-### FsaApplication.java
+#### ou, se preferir, execute diretamente pela IDE:
+#### FsaApplication.java
 
-### 3. Executar o Front-end (Next.js)
-### Entre na pasta do projeto front-end
+#### 3. Executar o Front-end (Next.js)
+#### Entre na pasta do projeto front-end
 npm install
 npm run build
 npm start
