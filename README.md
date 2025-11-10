@@ -10,7 +10,7 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 
 ## Tecnologias e Bibliotecas Utilizadas
 
-### Back-end (Java / Spring Boot)
+#### Back-end (Java / Spring Boot)
 - **Spring Boot 3.3.4**
 - **Spring Web** — Criação de endpoints RESTful  
 - **Spring Data JPA** — Persistência e acesso a dados  
@@ -22,7 +22,7 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 - **Springdoc OpenAPI** — Documentação Swagger em `/swagger-ui.html`  
 - **Maven** — Gerenciamento de dependências e build
 
-### Front-end (React / Vite)
+#### Front-end (React / Vite)
 - **Next.js 14+** — Framework React para renderização híbrida
 - **React 18+** — Biblioteca base de componentes  
 - **Axios ou Fetch API** — Comunicação com a API Spring Boot  
@@ -32,7 +32,7 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 
 ##  Passo a Passo para Executar o Projeto
 
-#### 1. Executar o Banco de Dados (MySQL via Docker)
+### 1. Executar o Banco de Dados (MySQL via Docker)
 docker run --name mysql-fsa \
   -e MYSQL_ROOT_PASSWORD=root \
   -e MYSQL_DATABASE=fsa_db \
