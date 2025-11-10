@@ -22,7 +22,7 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 - **Springdoc OpenAPI** — Documentação Swagger em `/swagger-ui.html`  
 - **Maven** — Gerenciamento de dependências e build
 
-#### Front-end (React / Vite)
+#### Front-end (Next Js )
 - **Next.js 14+** — Framework React para renderização híbrida
 - **Axios ou Fetch API** — Comunicação com a API Spring Boot  
 - **Node.js / npm** — Ambiente de execução e gerenciamento de pacotes 
