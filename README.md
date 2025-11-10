@@ -32,9 +32,9 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 ---
 
 ##  Execução do Projeto
-npm install 
-npm build 
-npm start 
+-**npm install**
+-**npm build** 
+-**npm start** 
 
 
 
