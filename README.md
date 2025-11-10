@@ -32,12 +32,13 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 ---
 
 ##  Execução do Projeto
--**npm install**
--**npm build** 
--**npm start** 
+- **npm install**
+
+- **npm build** 
+
+- **npm start** 
 
 
 
 
-```bash
-docker run --name mysql-fsa -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=fsa_db -p 3306:3306 -d mysql:8
+
