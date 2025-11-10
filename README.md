@@ -32,15 +32,11 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 ##  Passo a Passo para Executar o Projeto
 
 #### 1. Executar o Banco de Dados 
-./setup-mysql.sh
-
-
+Execute o servidor MySQL da maneira que você preferir apos isso importe o banco de dados (schema.sql)
 
 #### 2. Executar o Back-end 
-#### Certifique-se de estar na pasta do projeto Java
-mvn spring-boot:run
-#### ou, se preferir, execute diretamente pela IDE:
-#### FsaApplication.java
+#### Execute diretamente pela IDE:
+#### o arquivo FsaApplication.java
 
 #### 3. Executar o Front-end 
 #### Entre na pasta do projeto front-end
