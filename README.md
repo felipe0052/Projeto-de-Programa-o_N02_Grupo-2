@@ -2,7 +2,7 @@
 
 ## Descrição do Módulo
 API desenvolvida com **Spring Boot** para gerenciar cursos, categorias, usuários e matrículas.  
-Inclui autenticação com **JWT**, documentação automática com **Swagger/OpenAPI**, e integração com um banco de dados **MySQL** executado via **Docker**.
+Inclui autenticação com **JWT**, documentação automática com **Swagger/OpenAPI**, e integração com um banco de dados **MySQL**
 
 O módulo faz parte de um sistema de gestão educacional, integrando o **back-end (Spring Boot)** com o **front-end (Next js)**.
 
@@ -32,11 +32,9 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 ##  Passo a Passo para Executar o Projeto
 
 #### 1. Executar o Banco de Dados 
-docker run --name mysql-fsa \
-  -e MYSQL_ROOT_PASSWORD=root \
-  -e MYSQL_DATABASE=fsa_db \
-  -p 3306:3306 \
-  -d mysql:8
+mysql -u root -p
+CREATE DATABASE fsa_db;
+
 
 #### 2. Executar o Back-end 
 #### Certifique-se de estar na pasta do projeto Java
