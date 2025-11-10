@@ -32,7 +32,7 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 
 ##  Passo a Passo para Executar o Projeto
 
-### 1. Executar o Banco de Dados (MySQL via Docker)
+#### 1. Executar o Banco de Dados (MySQL via Docker)
 docker run --name mysql-fsa \
   -e MYSQL_ROOT_PASSWORD=root \
   -e MYSQL_DATABASE=fsa_db \
