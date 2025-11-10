@@ -35,11 +35,10 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 Execute o servidor MySQL da maneira que você preferir apos isso importe o banco de dados (schema.sql)
 
 #### 2. Executar o Back-end 
-#### Execute diretamente pela IDE:
-#### o arquivo FsaApplication.java
+Execute diretamente pela IDE: o arquivo FsaApplication.java
 
 #### 3. Executar o Front-end 
-#### Entre na pasta do projeto front-end
+Entre na pasta do projeto front-end pelo cmd:
 npm install
 npm run build
 npm start
