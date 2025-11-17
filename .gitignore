@@ -1,0 +1,32 @@
+# Maven
+target/
+
+ .idea/
+ .project
+ .classpath
+ .settings/
+ .vscode/
+
+ *.log
+ *.tmp
+ *.swp
+ Thumbs.db
+ .DS_Store
+
+ *.jar
+ *.war
+ *.ear
+
+ .env
+ *.env.local
+ node_modules/
+ .next/
+ out/
+ dist/
+ coverage/
+ npm-debug.log*
+ yarn-debug.log*
+ yarn-error.log*
+ pnpm-debug.log*
+ .tools/
+ .trae/
