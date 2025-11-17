@@ -17,7 +17,6 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 - **Spring Security** — Autenticação e autorização  
 - **Bean Validation** — Validação de campos de entrada  
 - **JJWT (io.jsonwebtoken)** — Geração e validação de tokens JWT  
-- **Lombok** — Redução de código boilerplate (`@Getter`, `@Setter`, etc.)  
 - **MySQL Connector/J** — Conector JDBC para MySQL  
 - **Springdoc OpenAPI** — Documentação Swagger em `/swagger-ui.html`  
 - **Maven** — Gerenciamento de dependências e build
@@ -28,6 +27,28 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 - **Node.js / npm** — Ambiente de execução e gerenciamento de pacotes 
 
 ---
+## Responsabilidades da Equipe
+
+### **Thiago**
+- Documentação geral do projeto  
+- Desenvolvimento no back-end  
+- Estruturação da arquitetura e modelagem inicial  
+
+### **Gabriel**
+- Desenvolvimento no back-end  
+- Implementação do front-end (Next.js)  
+- Integração entre front e API  
+
+### **André**
+- Desenvolvimento no back-end  
+- Participação na modelagem e criação das entidades principais  
+
+### **Milton**
+- Desenvolvimento no back-end  
+- Implementação das regras de negócio dos módulos internos  
+
+### **Aganaldo**
+- Desenvolvimento no back-end
 
 ##  Passo a Passo para Executar o Projeto
 
