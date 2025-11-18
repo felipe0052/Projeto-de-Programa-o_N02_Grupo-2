@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/11/2025 às 17:30
+-- Tempo de geração: 18/11/2025 às 14:46
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -11,8 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE IF NOT EXISTS plataforma_cursos;
-USE plataforma_cursos;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -43,7 +41,9 @@ INSERT INTO `categories` (`id`, `nome`, `descricao`) VALUES
 (1, 'Categoria teste 1', 'saffsa'),
 (2, 'Teste 2', 'saffasafs'),
 (3, 'Categoria Teste', 'Teste'),
-(4, 'Cat ENC', 'Teste');
+(4, 'Cat ENC', 'Teste'),
+(5, 'Categoria Teste 4af1', 'Cat desc'),
+(6, 'Lopes', 'apenas uma categoria qualquer');
 
 -- --------------------------------------------------------
 
@@ -73,20 +73,8 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `nome`, `descricao`, `limite_alunos`, `valor`, `horario`, `category_id`, `instructor_id`, `status`, `created_at`, `updated_at`, `imagem_base64`, `creditos`, `image_url`) VALUES
-(1, 'Curso Dev', 'Introducao', 30, 0.00, NULL, 1, 6, 'ativo', '2025-11-17 06:02:35', '2025-11-17 03:51:46', NULL, 4, NULL),
-(2, 'Curso Verificacao', 'Desc', 10, 0.00, NULL, 3, 7, 'ativo', '2025-11-17 06:09:03', '2025-11-17 03:51:40', NULL, 1, NULL),
-(3, 'teste', 'teste desc', 10, 0.00, NULL, 1, 5, 'ativo', '2025-11-17 06:21:39', '2025-11-17 03:51:44', NULL, 1, NULL),
-(4, 'Curso ENC', 'Desc', 10, 0.00, NULL, 4, 10, 'encerrado', '2025-11-17 06:55:44', '2025-11-17 06:55:44', NULL, 1, NULL),
-(5, 'teste 2', 'sfafsafsasaff', 12, 0.00, NULL, 1, 5, 'ativo', '2025-11-17 07:22:09', '2025-11-17 07:22:09', NULL, 1, NULL),
-(6, 'sdasd', 'safsasf', 2, 0.00, NULL, 1, 5, 'rascunho', '2025-11-17 07:31:13', '2025-11-17 07:31:13', NULL, 1, NULL),
-(7, 'asfsaf', 'safsaf', 2, 0.00, NULL, 1, 5, 'ativo', '2025-11-17 07:31:36', '2025-11-17 07:31:36', NULL, 1, NULL),
-(8, 'hdf', 'dg', 1, 0.00, NULL, 1, 5, 'rascunho', '2025-11-17 07:47:18', '2025-11-17 07:47:18', NULL, 1, NULL),
-(9, 'afsf', 'saf', 2, 0.00, NULL, 1, 5, 'rascunho', '2025-11-17 07:50:04', '2025-11-17 07:50:04', NULL, 1, NULL),
-(10, 'Curso Draft Visivel', 'curso em rascunho', 50, 0.00, 'Seg 20h', 3, 11, 'rascunho', '2025-11-17 07:55:19', '2025-11-17 07:55:19', NULL, 3, NULL),
-(11, 'asfsaf', 'safafs', 2, 0.00, NULL, 1, 5, 'ativo', '2025-11-17 08:03:10', '2025-11-17 08:03:10', NULL, 1, NULL),
-(12, 'g', 'saf', 2, 0.00, NULL, 1, 5, 'ativo', '2025-11-17 08:43:44', '2025-11-17 08:43:44', NULL, 1, NULL),
-(13, 'sfasf', 'safsaf', 2, 0.00, NULL, 1, 5, 'rascunho', '2025-11-17 08:53:29', '2025-11-17 08:53:29', NULL, 1, NULL),
-(14, 'saf', 'sfafa', 2, 0.00, NULL, 2, 5, 'ativo', '2025-11-17 09:05:20', '2025-11-17 09:05:20', NULL, 1, NULL);
+(15, 'teste curso lopes', 'fasfsa', 3, 0.00, NULL, 2, 5, 'ativo', '2025-11-17 16:54:17', '2025-11-18 13:31:56', NULL, 1, NULL),
+(18, 'teste', 'teste video', 100, 0.00, NULL, 6, 5, 'ativo', '2025-11-18 13:32:57', '2025-11-18 13:32:57', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -104,6 +92,14 @@ CREATE TABLE `course_images` (
   `course_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Despejando dados para a tabela `course_images`
+--
+
+INSERT INTO `course_images` (`id`, `created_at`, `filename`, `mime_type`, `size_bytes`, `storage_path`, `course_id`) VALUES
+(1, '2025-11-17 16:54:17.000000', 'f43d327a5fa5480392d88cb46d5ac8dc.jpg', 'image/jpeg', 2760079, 'D:\\Trabalhos\\lais\\.data\\uploads\\courses\\15\\f43d327a5fa5480392d88cb46d5ac8dc.jpg', 15),
+(3, '2025-11-18 13:32:57.000000', '00be430d90fa4a55be557b6f3d177d3b.jpg', 'image/jpeg', 32129, 'D:\\Trabalhos\\lais\\.data\\uploads\\courses\\18\\00be430d90fa4a55be557b6f3d177d3b.jpg', 18);
+
 -- --------------------------------------------------------
 
 --
@@ -114,6 +110,13 @@ CREATE TABLE `course_prerequisites` (
   `course_id` bigint(20) NOT NULL,
   `prerequisite_course_id` bigint(20) NOT NULL
 ) ;
+
+--
+-- Despejando dados para a tabela `course_prerequisites`
+--
+
+INSERT INTO `course_prerequisites` (`course_id`, `prerequisite_course_id`) VALUES
+(18, 15);
 
 -- --------------------------------------------------------
 
@@ -130,6 +133,15 @@ CREATE TABLE `enrollments` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `completed_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `enrollments`
+--
+
+INSERT INTO `enrollments` (`id`, `user_id`, `course_id`, `registration_code`, `status`, `created_at`, `completed_at`) VALUES
+(1, 5, 15, 'MAT-b3a660e8-b469-4a85-89f5-0c969dc09e57', 'ativo', '2025-11-17 18:02:16', NULL),
+(4, 4, 15, 'MAT-c4f1978d-9711-429b-a77a-26e77c9d7e54', 'ativo', '2025-11-18 09:51:20', NULL),
+(5, 4, 18, 'MAT-55c6304a-42f5-4112-be73-7b8e44efb67d', 'ativo', '2025-11-18 13:33:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -163,25 +175,28 @@ CREATE TABLE `users` (
   `foto_url` varchar(255) DEFAULT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `password_hash` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `users`
 --
 
-INSERT INTO `users` (`id`, `nome`, `email`, `foto_url`, `is_admin`, `created_at`, `updated_at`) VALUES
-(2, 'Teste', 'teste@example.com', NULL, 0, '2025-11-17 04:09:29', '2025-11-17 04:09:29'),
-(3, 'Teste Next', 'testenext@example.com', NULL, 0, '2025-11-17 04:09:47', '2025-11-17 04:09:47'),
-(4, 'Gabriel Almeida', 'gabrielalmeida0898p2p@gmail.com', NULL, 0, '2025-11-17 04:13:17', '2025-11-17 04:13:17'),
-(5, 'Gabriel Almeida', 'gabrielalmeida0898p2ps@gmail.com', NULL, 0, '2025-11-17 04:45:17', '2025-11-17 04:45:17'),
-(6, 'Teste Instrutor', 'instrutor+dev@local', NULL, 0, '2025-11-17 05:58:11', '2025-11-17 05:58:11'),
-(7, 'Test Instrutor', 'instructor@example.com', NULL, 0, '2025-11-17 06:09:03', '2025-11-17 06:09:03'),
-(8, 'Param Test', 'paramtest@example.com', NULL, 0, '2025-11-17 06:22:23', '2025-11-17 06:22:23'),
-(9, 'Verifica Param', 'verificaparam@example.com', NULL, 0, '2025-11-17 06:24:28', '2025-11-17 06:24:28'),
-(10, 'Encerrado Test', 'encerradotest@example.com', NULL, 0, '2025-11-17 06:55:44', '2025-11-17 06:55:44'),
-(11, 'Instrutor Teste', 'instrutor.teste@example.com', NULL, 0, '2025-11-17 07:54:48', '2025-11-17 07:54:48'),
-(12, 'Aluno Teste', 'aluno.teste@example.com', NULL, 0, '2025-11-17 07:55:36', '2025-11-17 07:55:36');
+INSERT INTO `users` (`id`, `nome`, `email`, `foto_url`, `is_admin`, `created_at`, `updated_at`, `password_hash`) VALUES
+(2, 'Teste', 'teste@example.com', NULL, 0, '2025-11-17 04:09:29', '2025-11-17 04:09:29', NULL),
+(3, 'Teste Next', 'testenext@example.com', NULL, 0, '2025-11-17 04:09:47', '2025-11-17 04:09:47', NULL),
+(4, 'Gabriel Almeida', 'gabrielalmeida0898p2p@gmail.com', NULL, 0, '2025-11-17 04:13:17', '2025-11-17 04:13:17', '$2a$10$tOLk62ErIfiVFmfebbkIhuZLaPxB9Z1j/Dwu7IY6uC834sU8.w7Jq'),
+(5, 'Gabriel Almeida', 'gabrielalmeida0898p2ps@gmail.com', NULL, 0, '2025-11-17 04:45:17', '2025-11-17 04:45:17', '$2a$10$yyNQGCW7ClHKIseH.jcCGOUAIDo8ntgT5rHER7wVti6vuUdrmHXCm'),
+(6, 'Teste Instrutor', 'instrutor+dev@local', NULL, 0, '2025-11-17 05:58:11', '2025-11-17 05:58:11', NULL),
+(7, 'Test Instrutor', 'instructor@example.com', NULL, 0, '2025-11-17 06:09:03', '2025-11-17 06:09:03', NULL),
+(8, 'Param Test', 'paramtest@example.com', NULL, 0, '2025-11-17 06:22:23', '2025-11-17 06:22:23', NULL),
+(9, 'Verifica Param', 'verificaparam@example.com', NULL, 0, '2025-11-17 06:24:28', '2025-11-17 06:24:28', NULL),
+(10, 'Encerrado Test', 'encerradotest@example.com', NULL, 0, '2025-11-17 06:55:44', '2025-11-17 06:55:44', NULL),
+(11, 'Instrutor Teste', 'instrutor.teste@example.com', NULL, 0, '2025-11-17 07:54:48', '2025-11-17 07:54:48', NULL),
+(12, 'Aluno Teste', 'aluno.teste@example.com', NULL, 0, '2025-11-17 07:55:36', '2025-11-17 07:55:36', NULL),
+(13, 'Instrutor Teste', 'dev_instrutor_1dc0ee09@example.com', NULL, 0, '2025-11-18 09:17:35', '2025-11-18 09:17:35', NULL),
+(14, 'Aluno Teste', 'dev_aluno_156276f6@example.com', NULL, 0, '2025-11-18 09:17:38', '2025-11-18 09:17:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -209,7 +224,9 @@ INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
 (9, 1),
 (10, 1),
 (11, 1),
-(12, 2);
+(12, 2),
+(13, 1),
+(14, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -283,25 +300,25 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT de tabela `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `course_images`
 --
 ALTER TABLE `course_images`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `enrollments`
 --
 ALTER TABLE `enrollments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `roles`
@@ -313,7 +330,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restrições para tabelas despejadas
