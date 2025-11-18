@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.fsa.dto.course.CourseImageResponse;
 import com.fsa.dto.user.InstructorSummary;
-import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -17,7 +16,6 @@ public class CourseResponse {
     private String nome;
     private String descricao;
     private Integer limiteAlunos;
-    private BigDecimal valor;
     private Integer creditos;
     private String horario;
     private Integer categoryId;

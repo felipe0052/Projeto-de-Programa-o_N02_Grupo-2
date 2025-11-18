@@ -62,7 +62,7 @@ public class EnrollmentService {
 
     @Transactional
     public int cancelAllByCourse(Long courseId) {
-        return enrollmentRepository.cancelAllActiveByCourse(courseId);
+        return enrollmentRepository.cancelAllActiveByCourse(courseId, EnrollmentStatus.ATIVO, EnrollmentStatus.CANCELADO);
     }
 }
 

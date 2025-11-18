@@ -8,7 +8,6 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "courses")
@@ -27,8 +26,6 @@ public class Course {
     @Column(name = "limite_alunos", nullable = false)
     private Integer limiteAlunos;
 
-    @Column(name = "valor", precision = 10, scale = 2, nullable = false)
-    private BigDecimal valor = BigDecimal.ZERO;
 
     @Column(nullable = false)
     private Integer creditos = 1;

@@ -14,7 +14,9 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     List<Enrollment> findByUser_IdAndStatus(Long userId, EnrollmentStatus status);
 
     @Modifying
-    @Query("update Enrollment e set e.status = 'CANCELADO' where e.course.id = :courseId and e.status = 'ATIVO'")
-    int cancelAllActiveByCourse(@Param("courseId") Long courseId);
+    @Query("update Enrollment e set e.status = :cancel where e.course.id = :courseId and e.status = :active")
+    int cancelAllActiveByCourse(@Param("courseId") Long courseId,
+                                @Param("active") EnrollmentStatus active,
+                                @Param("cancel") EnrollmentStatus cancel);
 }
 

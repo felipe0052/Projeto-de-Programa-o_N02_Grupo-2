@@ -8,8 +8,11 @@ import com.fsa.dto.auth.SignupRequest;
 import com.fsa.repository.UserRepository;
 import com.fsa.repository.RoleRepository;
 import com.fsa.security.JwtService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import java.util.stream.Collectors;
 import java.time.LocalDateTime;
@@ -19,17 +22,22 @@ public class AuthService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository, RoleRepository roleRepository, JwtService jwtService) {
+    public AuthService(UserRepository userRepository, RoleRepository roleRepository, JwtService jwtService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.jwtService = jwtService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional(readOnly = true)
     public LoginResponse login(LoginRequest req) {
         User user = userRepository.findByEmail(req.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciais inválidas"));
+        if (user.getPasswordHash() == null || !passwordEncoder.matches(req.getSenha(), user.getPasswordHash())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciais inválidas");
+        }
         String token = jwtService.generateToken(user);
         return new LoginResponse(
                 user.getId(),
@@ -57,6 +65,7 @@ public class AuthService {
                 .updatedAt(LocalDateTime.now())
                 .build();
         user.getRoles().add(role);
+        user.setPasswordHash(passwordEncoder.encode(req.getSenha()));
 
         user = userRepository.save(user);
         String token = jwtService.generateToken(user);

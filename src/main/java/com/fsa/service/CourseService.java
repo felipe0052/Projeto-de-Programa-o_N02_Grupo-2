@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
 
 @Service
 public class CourseService {
@@ -35,15 +36,17 @@ public class CourseService {
     private final UserRepository userRepository;
     private final EnrollmentRepository enrollmentRepository;
     private final CourseImageRepository courseImageRepository;
+    private final ImageStorageService imageStorageService;
 
     public CourseService(CourseRepository courseRepository, CategoryRepository categoryRepository,
                          UserRepository userRepository, EnrollmentRepository enrollmentRepository,
-                         CourseImageRepository courseImageRepository) {
+                         CourseImageRepository courseImageRepository, ImageStorageService imageStorageService) {
         this.courseRepository = courseRepository;
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
         this.enrollmentRepository = enrollmentRepository;
         this.courseImageRepository = courseImageRepository;
+        this.imageStorageService = imageStorageService;
     }
 
     private CourseResponse toResponse(Course c) {
@@ -74,7 +77,6 @@ public class CourseService {
                 .nome(c.getNome())
                 .descricao(c.getDescricao())
                 .limiteAlunos(c.getLimiteAlunos())
-                .valor(c.getValor())
                 .creditos(c.getCreditos())
                 .horario(c.getHorario())
                 .categoryId(c.getCategory() != null ? c.getCategory().getId() : null)
@@ -132,7 +134,6 @@ public class CourseService {
                 .nome(req.getNome())
                 .descricao(req.getDescricao())
                 .limiteAlunos(req.getLimiteAlunos())
-                .valor(req.getValor())
                 .creditos(req.getCreditos())
                 .horario(req.getHorario())
                 .category(category)
@@ -144,7 +145,7 @@ public class CourseService {
 
         if (req.getPrerequisiteIds() != null && !req.getPrerequisiteIds().isEmpty()) {
             List<Course> prereqs = courseRepository.findAllById(req.getPrerequisiteIds());
-            c.setPrerequisites(Set.copyOf(prereqs));
+            c.setPrerequisites(new HashSet<>(prereqs));
         }
 
         c = courseRepository.save(c);
@@ -215,9 +216,6 @@ public class CourseService {
             }
             c.setLimiteAlunos(req.getLimiteAlunos());
         }
-        if (req.getValor() != null) {
-            c.setValor(req.getValor());
-        }
         if (req.getCreditos() != null) {
             if (req.getCreditos() <= 0) throw new IllegalArgumentException("Créditos deve ser maior ou igual a 1");
             c.setCreditos(req.getCreditos());
@@ -239,7 +237,9 @@ public class CourseService {
         if (req.getStatus() != null) c.setStatus(CourseStatus.fromDb(req.getStatus()));
         if (req.getPrerequisiteIds() != null) {
             List<Course> prereqs = courseRepository.findAllById(req.getPrerequisiteIds());
-            c.setPrerequisites(Set.copyOf(prereqs));
+            Set<Course> set = new HashSet<>(prereqs);
+            set.removeIf(p -> p.getId() != null && p.getId().equals(c.getId()));
+            c.setPrerequisites(set);
         }
         c.setUpdatedAt(LocalDateTime.now());
         return toResponse(courseRepository.save(c));
@@ -295,6 +295,17 @@ public class CourseService {
         ensureEditPermission(c);
         long ativos = enrollmentRepository.countByCourse_IdAndStatus(c.getId(), EnrollmentStatus.ATIVO);
         if (ativos > 0) throw new IllegalStateException("Não pode deletar: curso com alunos ativos");
+        List<CourseImage> imgs = imageStorageService.listByCourse(c.getId());
+        if (!imgs.isEmpty()) {
+            for (CourseImage img : imgs) {
+                try {
+                    imageStorageService.deleteCourseImage(img);
+                } catch (java.io.IOException e) {
+                    log.warn("Falha ao remover arquivo de imagem id={} do curso id={}: {}", img.getId(), c.getId(), e.getMessage());
+                    courseImageRepository.delete(img);
+                }
+            }
+        }
         courseRepository.delete(c);
     }
 }

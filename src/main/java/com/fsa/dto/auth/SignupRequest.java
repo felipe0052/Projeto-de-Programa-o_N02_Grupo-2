@@ -17,4 +17,7 @@ public class SignupRequest {
 
     @NotBlank
     private String roleCode; // "ALUNO" ou "INSTRUTOR"
+
+    @NotBlank
+    private String senha;
 }
