@@ -69,15 +69,15 @@ npm start
 ---
 ## Prints (screenshots)
 
-![criar curso](prints/criar curso.png)
+![criar curso](PRINTS/criar curso.png)
 
-![curso criado](prints/curso criado.png)
+![curso criado](PRINTS/curso criado.png)
 
-![editar cursos](prints/editar cursos.png)
+![editar cursos](PRINTS/editar cursos.png)
 
-![explorar cursos](prints/explorar cursos.png)
+![explorar cursos](PRINTS/explorar cursos.png)
 
-![gerencia cursos](prints/gerencia cursos.png)
+![gerencia cursos](PRINTS/gerencia cursos.png)
 
 ![Login](prints/Login.png)
 
