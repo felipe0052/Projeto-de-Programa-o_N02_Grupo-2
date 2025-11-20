@@ -69,17 +69,25 @@ npm start
 ---
 ## Prints (screenshots)
 
-![criar curso](PRINTS/criar curso.png)
+### **Tela de login**
+![Login](PRINTS/Login.png)
 
-![curso criado](PRINTS/curso criado.png)
+### **Tela de Criar Curso**
+![criar curso](PRINTS/criar-curso.png)
 
-![editar cursos](PRINTS/editar cursos.png)
+### **tela de Curso Criado**
+![curso criado](PRINTS/curso-criado.png)
 
-![explorar cursos](PRINTS/explorar cursos.png)
+### **Tela de Editar Curso**
+![editar cursos](PRINTS/editar-cursos.png)
 
-![gerencia cursos](PRINTS/gerencia cursos.png)
+### **Tela de explorar curso**
+![explorar cursos](PRINTS/explorar-cursos.png)
 
-![Login](prints/Login.png)
+### **Tela de Gerencia Curso**
+![gerencia cursos](PRINTS/gerencia-cursos.png)
+
+
 
 
 
