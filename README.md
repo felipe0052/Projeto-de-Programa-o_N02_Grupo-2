@@ -26,6 +26,21 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 - **Axios ou Fetch API** — Comunicação com a API Spring Boot  
 - **Node.js / npm** — Ambiente de execução e gerenciamento de pacotes 
 
+
+##  Passo a Passo para Executar o Projeto
+
+#### 1. Executar o Banco de Dados 
+Execute o servidor MySQL da maneira que você preferir apos isso importe o banco de dados (schema.sql)
+
+#### 2. Executar o Back-end 
+Execute diretamente pela IDE: o arquivo FsaApplication.java
+
+#### 3. Executar o Front-end 
+Entre na pasta do projeto front-end pelo cmd:
+npm install
+npm run build
+npm start
+
 ---
 ## Responsabilidades da Equipe
 
@@ -50,20 +65,21 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 ### **Aganaldo**
 - Desenvolvimento no back-end
 
-##  Passo a Passo para Executar o Projeto
 
-#### 1. Executar o Banco de Dados 
-Execute o servidor MySQL da maneira que você preferir apos isso importe o banco de dados (schema.sql)
+---
+## Prints (screenshots)
 
-#### 2. Executar o Back-end 
-Execute diretamente pela IDE: o arquivo FsaApplication.java
+![criar curso](prints/criar curso.png)
 
-#### 3. Executar o Front-end 
-Entre na pasta do projeto front-end pelo cmd:
-npm install
-npm run build
-npm start
+![curso criado](prints/curso criado.png)
 
+![editar cursos](prints/editar cursos.png)
+
+![explorar cursos](prints/explorar cursos.png)
+
+![gerencia cursos](prints/gerencia cursos.png)
+
+![Login](prints/Login.png)
 
 
 
