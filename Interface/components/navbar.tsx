@@ -53,9 +53,6 @@ export function Navbar() {
                   Entrar
                 </Button>
               </Link>
-              <Link href="/signup">
-                <Button size="sm">Cadastro</Button>
-              </Link>
             </>
           )}
         </div>

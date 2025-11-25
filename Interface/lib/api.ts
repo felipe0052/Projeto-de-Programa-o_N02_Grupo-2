@@ -93,14 +93,6 @@ export async function login(email: string, senha: string): Promise<LoginResponse
   return handleJson<LoginResponse>(res, "Login failed")
 }
 
-export async function signup(nome: string, email: string, roleCode: "ALUNO" | "INSTRUTOR"): Promise<LoginResponse> {
-  const res = await fetch(`${BASE}/auth/signup`, {
-    method: "POST",
-    headers: buildHeaders(),
-    body: JSON.stringify({ nome, email, roleCode }),
-  })
-  return handleJson<LoginResponse>(res, "Signup failed")
-}
 
 export async function getCategories(token?: string): Promise<CategoryResponse[]> {
   const res = await fetch(`${BASE}/categorias`, { headers: buildHeaders(token) })

@@ -29,7 +29,7 @@ export default function Home() {
                 Acesse milhares de cursos de especialistas renomados e acelere seu desenvolvimento profissional.
               </p>
               <div className="flex gap-4">
-                <Link href="/signup">
+                <Link href="/login">
                   <Button size="lg" className="bg-primary hover:bg-primary/90">
                     Começar Agora
                   </Button>

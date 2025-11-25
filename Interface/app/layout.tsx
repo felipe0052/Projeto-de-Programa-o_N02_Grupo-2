@@ -12,7 +12,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "EduFlow - Plataforma de Cursos",
-  description: "Plataforma moderna para cadastro e gerenciamento de cursos online",
+  description: "Plataforma moderna para gerenciamento de cursos online",
   generator: "v0.app",
   icons: {
     icon: [

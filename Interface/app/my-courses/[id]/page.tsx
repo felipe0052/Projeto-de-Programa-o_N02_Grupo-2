@@ -1,4 +1,4 @@
-                                                "use client"
+"use client"
 
 import { useState } from "react"
 import { Navbar } from "@/components/navbar"
@@ -150,37 +150,7 @@ export default function CourseLessonPage({ params }: { params: { id: string } })
               <div className="bg-card border border-border rounded-lg p-4 sticky top-24">
                 <h3 className="font-bold mb-4">Conteúdo do Curso</h3>
                 <div className="space-y-2 max-h-96 overflow-y-auto">
-                  {[] as any[] /* Conteúdo indisponível */}
-                    <div key={module.id}>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">
-                        Módulo {mIndex + 1}: {module.title}
-                      </p>
-                      <div className="space-y-1">
-                        {module.lessons.map((lesson, lIndex) => {
-                          const globalLessonIndex = allLessons.findIndex((l) => l.id === lesson.id)
-                          const isCompleted = completedLessons.includes(lesson.id)
-                          const isCurrent = currentLessonIndex === globalLessonIndex
-
-                          return (
-                            <button
-                              key={lesson.id}
-                              onClick={() => setCurrentLessonIndex(globalLessonIndex)}
-                              className={`w-full text-left px-3 py-2 rounded text-sm transition ${
-                                isCurrent
-                                  ? "bg-primary text-primary-foreground"
-                                  : isCompleted
-                                    ? "bg-accent/20 text-foreground"
-                                    : "hover:bg-muted"
-                              }`}
-                            >
-                              <span className="mr-2">{isCompleted ? "✓" : isCurrent ? "▶" : "◯"}</span>
-                              {lesson.title}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  ))}
+                  <p className="text-sm text-muted-foreground">Conteúdo indisponível</p>
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ import React from "react"
 import { Navbar } from "@/components/navbar"
 import { Button } from "@/components/ui/button"
 import type { Course } from "@/lib/course-data"
-import { getCourse, updateCourse, type CourseCreateRequest } from "@/lib/api"
+import { getCourse, updateCourse, getCategories, type CourseCreateRequest, type CategoryResponse } from "@/lib/api"
 import { useAuth } from "@/lib/auth-context"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -22,6 +22,8 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
   const [form, setForm] = useState<CourseCreateRequest | null>(null)
   const [images, setImages] = useState<CourseImageResponse[]>([])
   const [newImages, setNewImages] = useState<File[]>([])
+  const [categories, setCategories] = useState<CategoryResponse[]>([])
+  const [loadingCats, setLoadingCats] = useState(false)
 
   useEffect(() => {
     if (!isAuthenticated || (user?.role !== "instructor" && user?.role !== "admin")) {
@@ -57,6 +59,24 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
       mounted = false
     }
   }, [courseId, isAuthenticated, user, token])
+
+  useEffect(() => {
+    let mounted = true
+    const loadCats = async () => {
+      if (!isAuthenticated || (user?.role !== "instructor" && user?.role !== "admin") || !token) return
+      setLoadingCats(true)
+      try {
+        const cats = await getCategories(token)
+        if (!mounted) return
+        setCategories(cats)
+      } catch {}
+      setLoadingCats(false)
+    }
+    loadCats()
+    return () => {
+      mounted = false
+    }
+  }, [isAuthenticated, user, token])
 
   if (!isAuthenticated || (user?.role !== "instructor" && user?.role !== "admin")) return null
 
@@ -119,13 +139,22 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">Categoria</label>
-                  <input
-                    type="number"
-                    value={form.categoryId}
+                  <select
+                    value={String(form.categoryId)}
                     onChange={(e) => setForm({ ...form!, categoryId: Number(e.target.value) })}
                     disabled={!isEditing}
                     className="w-full px-4 py-2 border border-input rounded-lg bg-background disabled:opacity-50"
-                  />
+                  >
+                    {loadingCats ? (
+                      <option>Carregando...</option>
+                    ) : categories.length > 0 ? (
+                      categories.map((c) => (
+                        <option key={c.id} value={c.id}>{c.nome}</option>
+                      ))
+                    ) : (
+                      <option value={form.categoryId}>{course.categoryNome ?? `Categoria #${form.categoryId}`}</option>
+                    )}
+                  </select>
                 </div>
               </div>
 
@@ -155,7 +184,19 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
                 </div>
               </div>
 
-              <div></div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Status</label>
+                <select
+                  value={form.status ?? "rascunho"}
+                  onChange={(e) => setForm({ ...form!, status: e.target.value })}
+                  disabled={!isEditing}
+                  className="w-full px-4 py-2 border border-input rounded-lg bg-background disabled:opacity-50"
+                >
+                  <option value="rascunho">Rascunho</option>
+                  <option value="ativo">Ativo</option>
+                  <option value="encerrado">Encerrado</option>
+                </select>
+              </div>
 
               <div className="space-y-4">
                 <h2 className="text-xl font-semibold">Imagens do Curso</h2>

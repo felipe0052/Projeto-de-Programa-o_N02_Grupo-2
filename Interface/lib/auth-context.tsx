@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState, type ReactNode } from "react"
-import { login as apiLogin, signup as apiSignup, type LoginResponse } from "./api"
+import { login as apiLogin, type LoginResponse } from "./api"
 
 interface User {
   id: number
@@ -14,7 +14,6 @@ interface AuthContextType {
   token: string | null
   isLoading: boolean
   login: (email: string, senha: string) => Promise<void>
-  signup: (name: string, email: string, password: string, role: "student" | "instructor") => Promise<void>
   logout: () => void
   isAuthenticated: boolean
 }
@@ -42,19 +41,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(false)
   }
 
-  const signup = async (name: string, email: string, _password: string, role: "student" | "instructor") => {
-    setIsLoading(true)
-    const roleCode = role === "instructor" ? "INSTRUTOR" : "ALUNO"
-    const res: LoginResponse = await apiSignup(name, email, roleCode)
-    const roleMapped = res.admin ? "admin" : res.roles.includes("INSTRUTOR") ? "instructor" : "student"
-    setUser({ id: res.id, name: res.nome, role: roleMapped })
-    setToken(res.jwt)
-    try {
-      localStorage.setItem("jwt", res.jwt)
-    } catch {}
-    setIsLoading(false)
-  }
-
   const logout = () => {
     setUser(null)
     setToken(null)
@@ -64,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, isLoading, login, signup, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, token, isLoading, login, logout, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   )
