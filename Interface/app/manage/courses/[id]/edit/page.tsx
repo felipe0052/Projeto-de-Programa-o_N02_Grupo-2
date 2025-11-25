@@ -40,9 +40,7 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
         nome: c.nome,
         descricao: c.descricao ?? "",
         limiteAlunos: c.limiteAlunos,
-        valor: Number((c as Course).valor ?? 0),
         creditos: Number((c as Course).creditos),
-        horario: c.horario ?? "",
         categoryId: c.categoryId,
         instructorId: c.instructorId ?? undefined,
         status: c.status ?? undefined,
@@ -129,17 +127,6 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
                     className="w-full px-4 py-2 border border-input rounded-lg bg-background disabled:opacity-50"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Valor (R$)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={form.valor ?? 0}
-                    onChange={(e) => setForm({ ...form!, valor: Number(e.target.value) })}
-                    disabled={!isEditing}
-                    className="w-full px-4 py-2 border border-input rounded-lg bg-background disabled:opacity-50"
-                  />
-                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -162,16 +149,6 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
                     type="number"
                     value={form.limiteAlunos}
                     onChange={(e) => setForm({ ...form!, limiteAlunos: Number(e.target.value) })}
-                    disabled={!isEditing}
-                    className="w-full px-4 py-2 border border-input rounded-lg bg-background disabled:opacity-50"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Horário</label>
-                  <input
-                    type="text"
-                    value={form.horario ?? ""}
-                    onChange={(e) => setForm({ ...form!, horario: e.target.value })}
                     disabled={!isEditing}
                     className="w-full px-4 py-2 border border-input rounded-lg bg-background disabled:opacity-50"
                   />

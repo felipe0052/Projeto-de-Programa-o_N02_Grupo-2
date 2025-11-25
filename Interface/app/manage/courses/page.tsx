@@ -68,12 +68,9 @@ export default function ManageCoursesPage() {
               <h1 className="text-4xl font-bold mb-2">Gerenciar Cursos</h1>
               <p className="text-muted-foreground">Crie e gerencie seus cursos online</p>
             </div>
-            <Button
-              onClick={() => setShowNewCourseModal(true)}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
-            >
-              + Criar Novo Curso
-            </Button>
+            <Link href="/manage/courses/new">
+                              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Criar Cursos</Button>
+                 </Link>
           </div>
 
           {/* Stats */}
@@ -124,9 +121,10 @@ export default function ManageCoursesPage() {
                           Editar
                         </Button>
                       </Link>
-                      <Button variant="outline" size="sm">
-                        Ver
-                      </Button>
+                      <Link href={`/course/${course.id}`}> <Button variant="outline" size="sm">
+                                                                                   Ver
+                                                                                 </Button> </Link>
+
                       <Button
                         variant="outline"
                         size="sm"

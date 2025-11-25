@@ -20,7 +20,6 @@ export default function NewCoursePage() {
     description: "",
     categoryId: 0 as number,
     capacity: 0 as number,
-    valor: "0.00" as string,
     creditos: "1" as string,
     status: "rascunho" as string,
   })
@@ -62,7 +61,6 @@ export default function NewCoursePage() {
     if (formData.categoryId === 0) missing.push("Categoria")
     if (Number(formData.capacity) <= 0) missing.push("Capacidade (> 0)")
     if (Number(formData.creditos) < 1) missing.push("Créditos (≥ 1)")
-    if (!formData.valor || isNaN(Number(formData.valor))) missing.push("Valor (R$)")
     if (missing.length > 0) {
       toast({ title: "Faltam informações", description: `Informe: ${missing.join(", ")}` })
       return
@@ -72,7 +70,6 @@ export default function NewCoursePage() {
         nome: formData.title,
         descricao: formData.description || null,
         limiteAlunos: Number(formData.capacity),
-        valor: Number(formData.valor || 0),
         creditos: Number(formData.creditos || 1),
         horario: null,
         status: formData.status || null,
@@ -247,18 +244,6 @@ export default function NewCoursePage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Valor (R$)</label>
-                  <input
-                    type="number"
-                    name="valor"
-                    step="0.01"
-                    value={formData.valor}
-                    onChange={handleInputChange}
-                    placeholder="Ex: 99.90"
-                    className="w-full px-4 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 bg-background"
-                  />
-                </div>
-                <div>
                   <label className="block text-sm font-medium mb-2">Créditos</label>
                   <input
                     type="number"
@@ -286,10 +271,10 @@ export default function NewCoursePage() {
               </div>
             )}
 
-            {/* Step 2: Créditos e Valor */}
+            {/* Step 2: Créditos */}
             {currentStep === 2 && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">Créditos e Valor</h2>
+                <h2 className="text-2xl font-bold mb-6">Créditos</h2>
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">Créditos</label>
@@ -300,18 +285,6 @@ export default function NewCoursePage() {
                       onChange={handleInputChange}
                       placeholder="Ex: 10"
                       min={1}
-                      className="w-full px-4 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 bg-background"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Valor (R$)</label>
-                    <input
-                      type="number"
-                      name="valor"
-                      step="0.01"
-                      value={formData.valor}
-                      onChange={handleInputChange}
-                      placeholder="Ex: 99.90"
                       className="w-full px-4 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 bg-background"
                     />
                   </div>
@@ -347,10 +320,7 @@ export default function NewCoursePage() {
                     <p className="text-sm text-muted-foreground">Créditos</p>
                     <p className="font-semibold">{formData.creditos}</p>
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Valor</p>
-                    <p className="font-semibold">R$ {formData.valor}</p>
-                  </div>
+
                 </div>
                   
                   <div className="grid grid-cols-2 gap-4">
