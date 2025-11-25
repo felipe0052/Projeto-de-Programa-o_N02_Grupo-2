@@ -30,16 +30,24 @@ O módulo faz parte de um sistema de gestão educacional, integrando o **back-en
 ##  Passo a Passo para Executar o Projeto
 
 #### 1. Executar o Banco de Dados 
-Execute o servidor MySQL da maneira que você preferir apos isso importe o banco de dados (schema.sql)
+Execute o servidor MySQL da maneira que você preferir apos isso importe o banco de dados (plataforma_cursos.sql)
 
 #### 2. Executar o Back-end 
 Execute diretamente pela IDE: o arquivo FsaApplication.java
 
 #### 3. Executar o Front-end 
 Entre na pasta do projeto front-end pelo cmd:
-npm install
-npm run build
-npm start
+npm install ou npm --force install
+npm run dev
+
+#### 4. para testar
+Instrutor:
+Email: gabrielalmeida0898p2ps@gmail.com
+Senha: senha
+
+Aluno:
+Email: gabrielalmeida0898p2p@gmail.com
+Senha: senha
 
 ---
 ## Responsabilidades da Equipe
